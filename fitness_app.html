@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http:/ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script>
+        angular.module('sampleApp', []);
+        angular.module('sampleApp').controller('FirstController', function($scope, $interval){
+            $scope.workout = {
+                currentExcercise: 1,
+                numberOfExcercises: 8,
+                interval: 3000
+            };
+            
+            var interval = 3000;
+            
+            $interval(function(){
+                $scope.workout.currentExcercise++;
+                                     
+                if($scope.workout.currentExcercise == 2){
+                    $scope.workout.interval = 2000;
+                }
+                else if($scope.workout.currentExcercise == 3){
+                    $scope.workout.interval = 1000;
+                }
+                
+                if($scope.workout.currentExcercise == 2){
+                    interval = 2000;
+                }
+                else if($scope.workout.currentExcercise == 3){
+                    interval = 1000;
+                }
+                
+                console.log(interval);
+            
+            }, interval);
+        })
+    </script>
+</head>
+<body ng-app="sampleApp">
+    <div ng-controller="FirstController">
+       <div>
+          <h1>{{workout.interval}} ms </h1>
+           <img ng-src="{{workout.currentExcercise}}.PNG">
+       </div>
+        
+    </div>
+</body>
+</html>
